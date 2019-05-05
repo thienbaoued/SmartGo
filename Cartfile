@@ -1,0 +1,8 @@
+github "onevcat/Kingfisher"
+github "malcommac/SwiftDate"
+github "ReactiveX/RxSwift"
+github "SwiftyBeaver/SwiftyBeaver"
+github "SVProgressHUD/SVProgressHUD"
+github "SnapKit/SnapKit"
+github "krzyzanowskim/CryptoSwift"
+github "Alamofire/Alamofire" "5.0.0-beta.2"
