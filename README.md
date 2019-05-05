@@ -35,8 +35,6 @@ Setup:
 
 . Clone the repository to your machine
 
-. Navigate to Timo folder
-
 . Update Carthage: 
 `carthage bootstrap --platform iOS --no-use-binaries`
 
