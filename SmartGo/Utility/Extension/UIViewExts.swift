@@ -45,4 +45,24 @@ extension UIView {
       self.layer.borderColor = borderColor.cgColor
     }
   }
+  
+  func cornerAndShadow() {
+    // Circle image
+    self.layer.cornerRadius = self.frame.size.width/2
+    self.layer.masksToBounds = true
+    self.clipsToBounds = true
+    
+    // Shadow image
+    self.layer.shadowColor = UIColor.white.cgColor
+    self.layer.shadowOpacity = 1
+    self.layer.shadowOffset = .zero
+    self.layer.shadowRadius = 10
+    self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    self.layer.shouldRasterize = true
+  }
+  
+  func corner(value: CGFloat) {
+    self.layer.cornerRadius = value
+    self.layer.masksToBounds = true
+  }
 }

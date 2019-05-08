@@ -9,6 +9,12 @@ import UIKit
 import ServiceFlatform
 
 extension UIViewController {
+  
+  func showAlert(title: String, mess: String, action: [UIAlertAction]) {
+    let alert = UIAlertController(title: title, message: mess, preferredStyle: .alert)
+    action.forEach({ alert.addAction($0 )})
+    present(alert, animated: true, completion: nil)
+  }
 
   func initialButton(title: String, color: UIColor, fontSize: CGFloat = 13, width: CGFloat = 40) -> UIButton {
     let button = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: 30))

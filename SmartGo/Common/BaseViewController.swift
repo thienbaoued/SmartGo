@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftyBeaver
+import LNSideMenu
 
 class BaseViewController: UIViewController {
 
@@ -51,13 +52,21 @@ class BaseViewController: UIViewController {
     }
   }
   
+  func addLeftRightButton(button: UIBarButtonItem, pos: Position) {
+    if pos == .left {
+      navigationItem.leftBarButtonItem = button
+    } else {
+      navigationItem.rightBarButtonItem = button
+    }
+  }
+  
   func setupBackButton() {
-    let barButton = createBarButtonItem(action: #selector(popViewControler), image: #imageLiteral(resourceName: "go-back"), insets: UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0))
+    let barButton = createBarButtonItem(action: #selector(popViewControler), image: Icons.back, insets: UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0))
     navigationItem.leftBarButtonItem = barButton
   }
   
   func setupDismissButton() {
-    let barButton = createBarButtonItem(action: #selector(dismissVC), image: #imageLiteral(resourceName: "drop-down-arrow"), insets: UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0))
+    let barButton = createBarButtonItem(action: #selector(dismissVC), image: Icons.clear, insets: UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0))
     navigationItem.leftBarButtonItem = barButton
   }
 
