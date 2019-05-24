@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0K-su-cId">
-                            <rect key="frame" x="5" y="15" width="45" height="45"/>
+                            <rect key="frame" x="15" y="15" width="45" height="45"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xSg-fv-x7b">
                                     <rect key="frame" x="9" y="9" width="27" height="27"/>
@@ -38,10 +38,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-Ja-CZS">
-                            <rect key="frame" x="50" y="0.0" width="325" height="75"/>
+                            <rect key="frame" x="60" y="0.0" width="315" height="75"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-Jg-9Xu">
-                                    <rect key="frame" x="15" y="24.5" width="290" height="26.5"/>
+                                    <rect key="frame" x="15" y="24.5" width="280" height="26.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="bLQ-Ja-CZS" firstAttribute="leading" secondItem="I0K-su-cId" secondAttribute="trailing" id="HzP-PI-ICA"/>
-                        <constraint firstItem="I0K-su-cId" firstAttribute="leading" secondItem="2dc-DH-jJ7" secondAttribute="leading" constant="5" id="Oru-Wv-0rw"/>
+                        <constraint firstItem="I0K-su-cId" firstAttribute="leading" secondItem="2dc-DH-jJ7" secondAttribute="leading" constant="15" id="Oru-Wv-0rw"/>
                         <constraint firstItem="I0K-su-cId" firstAttribute="centerY" secondItem="2dc-DH-jJ7" secondAttribute="centerY" id="cSs-z7-pCb"/>
                         <constraint firstAttribute="trailing" secondItem="bLQ-Ja-CZS" secondAttribute="trailing" id="chB-G6-dhp"/>
                         <constraint firstAttribute="bottom" secondItem="bLQ-Ja-CZS" secondAttribute="bottom" id="jpM-QJ-QAx"/>

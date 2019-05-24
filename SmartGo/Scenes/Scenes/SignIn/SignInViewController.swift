@@ -37,8 +37,8 @@ class SignInViewController: BaseViewController, ReuseIdentifier {
     super.setupNav()
     // Set navigation bar translucent style
     self.navigationBarTranslucentStyle()
-    setupBackButton()
-    setupResetButton()
+    self.navigationController?.navigationItem.hidesBackButton = true
+    setupNavBarButton()
   }
   
   @IBAction func signIn(_ sender: Any) {
@@ -47,15 +47,15 @@ class SignInViewController: BaseViewController, ReuseIdentifier {
     
     let checkEmpty = viewModel.checkValueIsEmpty(email: email, password: pass)
     if checkEmpty {
-      emailStateLabel.text = viewModel.stateTextField(text: email, of: UserProfileTextField.email)
-      passwordStateLabel.text = viewModel.stateTextField(text: pass, of: UserProfileTextField.password)
+      textFiledNotification(email: email, password: pass)
     } else {
       UIHelper.showLoading()
-      viewModel.checkUser(email: email, password: pass) { check in
+      viewModel.signIn(email: email, password: pass) { check in
         UIHelper.hideLoading()
         if check {
           let popVC = UIAlertAction(title: "OK", style: .default) { (popVC) in
-            self.popViewControler()
+            let vc = Helper.getViewController(named: HomeViewController.identifier, inSb: Storyboard.home.rawValue) as! HomeViewController
+            self.navigationController?.pushViewController(vc, animated: true)
           }
           self.showAlert(title: "Notification", mess: "Sign in successfully", action: [popVC])
         } else {
@@ -82,9 +82,10 @@ extension SignInViewController {
     signInButton.roundBorder(radius: 5)
   }
   
-  private func setupResetButton() {
+  private func setupNavBarButton() {
     let resetButton = createBarButtonItem(action: #selector(reset), image: Icons.reset, title: nil, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -30))
     addLeftRightButton(button: resetButton, pos: .right)
+    addLeftButton()
   }
   
   @objc func reset() {
@@ -117,6 +118,14 @@ extension SignInViewController: UITextFieldDelegate {
     view.addGestureRecognizer(tap)
   }
   
+  func textFiledNotification(email: String , password: String) {
+    emailStateLabel.text = viewModel.notificationTextField(text: email, of: UserProfileTextField.email)
+    passwordStateLabel.text = viewModel.notificationTextField(text: password, of: UserProfileTextField.password)
+    
+    emailStateLabel.textColor = UIColor.red
+    passwordStateLabel.textColor = UIColor.red
+  }
+  
   func resetLabel() {
     emailStateLabel.text = ""
     passwordStateLabel.text = ""
@@ -128,5 +137,13 @@ extension SignInViewController: UITextFieldDelegate {
   
   @objc func textFieldDidChange(_ textField: UITextField) {
     resetLabel()
+    
+    guard let email = emailTextfield.text else { return }
+    guard let pass = passwordTextfield.text else { return }
+    
+    let checkEmpty = viewModel.checkValueIsEmpty(email: email, password: pass)
+    if checkEmpty {
+      textFiledNotification(email: email, password: pass)
+    }
   }
 }

@@ -10,7 +10,7 @@ import UIKit
 import LNSideMenu
 
 class SMNavigationController: LNSideMenuNavigationController {
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -19,32 +19,29 @@ class SMNavigationController: LNSideMenuNavigationController {
   }
   
   fileprivate func initialCustomMenu(position: Position) {
-    let vc = UIStoryboard(name: Storyboard.menu.rawValue, bundle: nil).instantiateViewController(withIdentifier: MenuViewController.identifier) as! MenuViewController
-    //vc.delegate = self
+    let vc = Helper.getViewController(named: MenuViewController.identifier, inSb: Storyboard.menu.rawValue) as! MenuViewController
+    vc.delegate = self
     menu = LNSideMenu(navigation: self, menuPosition: position, customSideMenu: vc, size: .custom(UIScreen.main.bounds.width - 75))
-    menu?.delegate = self
     menu?.enableDynamic = true
   }
 }
 
-extension SMNavigationController: LNSideMenuDelegate {
-  func sideMenuWillOpen() {
-    print("sideMenuWillOpen")
+extension SMNavigationController: SideMenuDelegate {
+  func didSelectProfile() {
+    menu?.hideSideMenu()
+    print("Profile")
   }
-  
-  func sideMenuWillClose() {
-    print("sideMenuWillClose")
-  }
-  
-  func sideMenuDidClose() {
-    print("sideMenuDidClose")
-  }
-  
-  func sideMenuDidOpen() {
-    print("sideMenuDidOpen")
-  }
-  
-  func didSelectItemAtIndex(_ index: Int) {
-    //setContentVC(index)
+
+  func didSelectItem(item: String) {
+    menu?.hideSideMenu()
+    guard let item = MenuItems(rawValue: item) else { return }
+    switch item {
+    case .notification, .contact, .mode, .setting, .sound:
+      print(item.rawValue)
+    default:
+      FirebaseAuthManger.shared.signOut()
+      let vc = Helper.getViewController(named: SignInViewController.identifier, inSb: Storyboard.signin.rawValue) as! SignInViewController
+      self.pushViewController(vc, animated: true)
+    }
   }
 }

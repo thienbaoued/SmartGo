@@ -49,20 +49,21 @@ class RegisterViewController: BaseViewController, ReuseIdentifier {
     
     let checkEmpty = viewModel.checkValueIsEmpty(email: email, password: pass, confirmPassword: confirmPass)
     if checkEmpty {
-//      emailStateLabel.text = viewModel.stateTextField(text: email, of: UserProfileTextField.email)
-//      passwordStateLabel.text = viewModel.stateTextField(text: pass, of: UserProfileTextField.password)
-//      confirmPasswordStateLabel.text = viewModel.stateTextField(text: confirmPass, of: UserProfileTextField.confirm)
       textFiledNotification(email: email, password: pass, confirmPassword: confirmPass)
     } else {
-      let mactchPassword = viewModel.checkPasswordIsMatch(password: pass, confirmPassword: confirmPass)
-      if !mactchPassword {
-        let reset = UIAlertAction(title: "OK", style: .default) { (reset) in
-          self.passwordTextfield.text = ""
-          self.confirmPasswordTextfield.text = ""
+      UIHelper.showLoading()
+      viewModel.register(email: email, password: pass) { success in
+        if success {
+          let signInViewModel = SignInViewModel()
+          signInViewModel.signIn(email: email, password: pass) { check in
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+              let vc = Helper.getViewController(named: HomeViewController.identifier, inSb: Storyboard.home.rawValue) as! HomeViewController
+              self.navigationController?.pushViewController(vc, animated: true)
+            }
+            UIHelper.hideLoading()
+            self.showAlert(title: "Notification", mess: "Account successfully created", action: [action])
+          }
         }
-        showAlert(title: "Warning", mess: "Password and confirm password is not match, please re-enter", action: [reset])
-      } else {
-        viewModel.register(email: email, password: pass)
       }
     }
   }
@@ -117,9 +118,9 @@ extension RegisterViewController: UITextFieldDelegate {
   }
   
   func textFiledNotification(email: String , password: String , confirmPassword: String) {
-    emailStateLabel.text = viewModel.stateTextField(text: email, of: UserProfileTextField.email)
-    passwordStateLabel.text = viewModel.stateTextField(text: password, of: UserProfileTextField.password)
-    confirmPasswordStateLabel.text = viewModel.stateTextField(text: confirmPassword, of: UserProfileTextField.confirm)
+    emailStateLabel.text = viewModel.notificationTextField(text: email, of: UserProfileTextField.email)
+    passwordStateLabel.text = viewModel.notificationTextField(text: password, of: UserProfileTextField.password)
+    confirmPasswordStateLabel.text = viewModel.notificationTextField(text: confirmPassword, of: UserProfileTextField.confirm)
     
     emailStateLabel.textColor = UIColor.red
     passwordStateLabel.textColor = UIColor.red
@@ -142,18 +143,19 @@ extension RegisterViewController: UITextFieldDelegate {
     guard let pass = passwordTextfield.text else { return }
     guard let confirmPass = confirmPasswordTextfield.text else { return }
     
-    if email.isEmpty {
-      textFiledNotification(email: email, password: pass, confirmPassword: confirmPass)
-    } else {
+    let checkEmpty = viewModel.checkValueIsEmpty(email: email, password: pass, confirmPassword: confirmPass)
+    if !checkEmpty {
       viewModel.checkUserExists(email: email) { check in
         if check {
-          self.emailStateLabel.text = "*Valid email"
+          self.emailStateLabel.text = "* Valid email"
           self.emailStateLabel.textColor = UIColor.green
         } else {
-          self.emailStateLabel.text = "*Email already exists"
+          self.emailStateLabel.text = "* Email already exists"
           self.emailStateLabel.textColor = UIColor.red
         }
       }
+    } else {
+      textFiledNotification(email: email, password: pass, confirmPassword: confirmPass)
     }
   }
   
@@ -163,18 +165,18 @@ extension RegisterViewController: UITextFieldDelegate {
     guard let pass = passwordTextfield.text else { return }
     guard let confirmPass = confirmPasswordTextfield.text else { return }
     
-    if confirmPass.isEmpty || pass.isEmpty {
+    let checkEmpty = viewModel.checkValueIsEmpty(email: email, password: pass, confirmPassword: confirmPass)
+    if checkEmpty {
       textFiledNotification(email: email, password: pass, confirmPassword: confirmPass)
     } else {
       let checkMatch = viewModel.checkPasswordIsMatch(password: pass, confirmPassword: confirmPass)
       if checkMatch {
-        confirmPasswordStateLabel.text = "*Match password"
+        confirmPasswordStateLabel.text = "* Match password"
         confirmPasswordStateLabel.textColor = UIColor.green
       } else {
-        confirmPasswordStateLabel.text = "*Password is not match"
+        confirmPasswordStateLabel.text = "* Password is not match"
         confirmPasswordStateLabel.textColor = UIColor.red
       }
     }
-    
   }
 }

@@ -13,7 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="7vq-w9-brv">
             <objects>
-                <viewController id="l8u-SL-weq" customClass="HomeViewController" customModule="SmartGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="l8u-SL-weq" customClass="HomeViewController" customModule="SmartGo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uhd-Jm-KOk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,16 +21,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRX-ou-ftr">
                                 <rect key="frame" x="0.0" y="79" width="375" height="588"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0O-3M-mc4">
-                                        <rect key="frame" x="93" y="51" width="75" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Đăng nhập"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ygT-va-k6W">
+                                        <rect key="frame" x="0.0" y="10" width="375" height="578"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BC-BC-4HY">
+                                        <rect key="frame" x="275" y="488" width="70" height="70"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="MGb-PB-ZFN"/>
+                                            <constraint firstAttribute="width" secondItem="2BC-BC-4HY" secondAttribute="height" id="z6u-Kw-A6g"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="signIn:" destination="l8u-SL-weq" eventType="touchUpInside" id="j43-5X-XCX"/>
+                                            <action selector="addNewPlan:" destination="l8u-SL-weq" eventType="touchUpInside" id="tjm-G6-ZqU"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ygT-va-k6W" secondAttribute="trailing" id="4AO-Ec-ClL"/>
+                                    <constraint firstAttribute="bottom" secondItem="ygT-va-k6W" secondAttribute="bottom" id="RbT-fX-1zd"/>
+                                    <constraint firstItem="ygT-va-k6W" firstAttribute="top" secondItem="TRX-ou-ftr" secondAttribute="top" constant="10" id="YAq-W3-2al"/>
+                                    <constraint firstItem="ygT-va-k6W" firstAttribute="leading" secondItem="TRX-ou-ftr" secondAttribute="leading" id="eMF-5h-IXJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="2BC-BC-4HY" secondAttribute="trailing" constant="30" id="xce-0P-86b"/>
+                                    <constraint firstAttribute="bottom" secondItem="2BC-BC-4HY" secondAttribute="bottom" constant="30" id="yXg-bz-TKS"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,6 +59,10 @@
                         <viewLayoutGuide key="safeArea" id="Bq0-iD-C3B"/>
                     </view>
                     <navigationItem key="navigationItem" id="iKR-Qg-LFx"/>
+                    <connections>
+                        <outlet property="addButton" destination="2BC-BC-4HY" id="lBU-4L-dhG"/>
+                        <outlet property="planTableView" destination="ygT-va-k6W" id="0Ej-aq-dag"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4c-oO-YbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,7 +13,7 @@ var db = Firestore.firestore()
 
 extension Firestore {
   func setupFirebase() {
-    //db.settings.areTimestampsInSnapshotsEnabled = true
+    db.settings.areTimestampsInSnapshotsEnabled = true
   }
 }
 

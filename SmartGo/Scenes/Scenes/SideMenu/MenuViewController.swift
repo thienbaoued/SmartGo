@@ -9,19 +9,21 @@
 import UIKit
 import ServiceFlatform
 
-protocol MenuDelegate: class {
-  func didSelectItemAtIndex(index idx: Int)
+protocol SideMenuDelegate: class {
+  func didSelectItem(item: String)
+  func didSelectProfile()
 }
 
 class MenuViewController: UIViewController, ReuseIdentifier {
 
   @IBOutlet weak var avatarImage: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var viewProfileButton: UIButton!
+  
   @IBOutlet var menuView: UIView!
-  @IBOutlet weak var profileView: UIView!
   @IBOutlet weak var menuTableView: UITableView!
   
-  weak var delegate: MenuDelegate?
-  
+  weak var delegate: SideMenuDelegate?
   let viewModel = MenuViewModel()
   
   var itemTitles: [String] {
@@ -36,37 +38,56 @@ class MenuViewController: UIViewController, ReuseIdentifier {
     return viewModel.itemIcons
   }
   
+  @IBAction func goToProfile(_ sender: Any) {
+    delegate?.didSelectProfile()
+  }
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-    defaultProfileData()
     setupMenuTableView()
+    updateUIProfile()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupUI()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    setupUI()
   }
 }
 
 extension MenuViewController {
   
-  private func setupUI() {
-    setupUIProfile()
-    setupUIMenu()
-    setupAvatarImage()
+  func updateUIProfile() {
+    NotificationCenter.default.addObserver(self, selector: #selector(getCurrentUser), name: Notification.Name.reloadMenu, object: nil)
   }
   
-  private func setupUIProfile() {
-    addBorderForProfileView()
+  @objc func getCurrentUser() {
+    FirebaseAuthManger.shared.getCurrentUser(completion: { user in
+      guard let user = user else { return }
+      self.setupUIProfile(user: user)
+    })
+  }
+  
+  func setupUIProfile(user: User) {
+    if user.lastName.isEmpty && user.firstName.isEmpty {
+      nameLabel.text = user.email
+    } else {
+      nameLabel.text = user.fullName
+    }
+    avatarImage.image = Icons.user
+  }
+  
+  private func setupUI() {
+    setupUIMenu()
   }
   
   private func setupUIMenu() {
     cornerMenuView()
-  }
-  
-  private func addBorderForProfileView() {
-    profileView.makeShadow()
   }
   
   private func cornerMenuView() {
@@ -75,32 +96,16 @@ extension MenuViewController {
     menuView.clipsToBounds = true
   }
   
-  private func setupAvatarImage() {
-    avatarImage.cornerAndShadow()
-  }
-  
 }
 
 extension MenuViewController {
   
-  private func defaultProfileData() {
-    avatarImage.image = Icons.user
-  }
-  
-//  private func updateProfileData(for user: User) {
-//    avatarImage.loadImageFromURL(user.imageURL)
-//    //nameUserLabel.text = user.name
-//  }
-}
-
-extension MenuViewController {
-  
-  private func registerCell() {
+  private func register() {
     menuTableView.register(MenuItemCell.nib, forCellReuseIdentifier: MenuItemCell.identifier)
   }
   
   private func setupMenuTableView() {
-    registerCell()
+    register()
     menuTableView.delegate = self
     menuTableView.dataSource = self
   }
@@ -127,4 +132,12 @@ extension MenuViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 75
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let delegate = delegate else { return }
+    let item = itemTitles[indexPath.row]
+    delegate.didSelectItem(item: item)
+    menuTableView.reloadData()
+  }
 }
+

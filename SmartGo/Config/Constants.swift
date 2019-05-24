@@ -60,7 +60,7 @@ struct Constant {
   // MARK: - String constants
   struct CString {
     
-    static let AppName = "Timo"
+    static let AppName = "SmartGo"
     
     static let Email = "Email"
     static let Password = "Password"
@@ -140,6 +140,7 @@ struct Constant {
   struct NotificationName {
     static let addNewActivity = "kAddNewActivity"
     static let updateRequest = "kUpdateRequest"
+    static let reloadMenu = "kReloadMenu"
   }
 }
 

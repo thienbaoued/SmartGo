@@ -80,12 +80,16 @@
 		51DDA62D222DA01600E2340D /* ServiceFlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519AE78B222D824400A944B5 /* ServiceFlatform.framework */; };
 		51DDA62E222DA01600E2340D /* ServiceFlatform.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 519AE78B222D824400A944B5 /* ServiceFlatform.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51DDA633222DA27400E2340D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DDA632222DA27400E2340D /* Helper.swift */; };
+		730F247B228C8E020003FE3F /* UITableViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730F247A228C8E020003FE3F /* UITableViewExts.swift */; };
 		737787F6223CD99700AEBBEA /* ReuseNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737787F5223CD99700AEBBEA /* ReuseNib.swift */; };
 		7377880E223D098D00AEBBEA /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377880D223D098D00AEBBEA /* ReuseIdentifier.swift */; };
 		73834EA22281CD8D009575D3 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73834EA12281CD8D009575D3 /* Register.storyboard */; };
 		73834EA72281CDEE009575D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73834EA62281CDEE009575D3 /* RegisterViewController.swift */; };
 		73834EA92281D08D009575D3 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73834EA82281D08D009575D3 /* SignInViewModel.swift */; };
 		73834EB32282B467009575D3 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73834EB22282B467009575D3 /* RegisterViewModel.swift */; };
+		738D62D022845040008C1957 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D62CF22845040008C1957 /* FirebaseAuthManager.swift */; };
+		739F6114228EFA47000C5F5D /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F6112228EFA47000C5F5D /* TripTableViewCell.swift */; };
+		739F6115228EFA47000C5F5D /* TripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739F6113228EFA47000C5F5D /* TripTableViewCell.xib */; };
 		73BC6BDB2281525B0054C330 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73BC6BDA2281525B0054C330 /* GoogleService-Info.plist */; };
 		73BC6BDD2281535E0054C330 /* FirebaseExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC6BDC2281535E0054C330 /* FirebaseExts.swift */; };
 		73BC6BDF228153C30054C330 /* DateExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC6BDE228153C30054C330 /* DateExts.swift */; };
@@ -261,12 +265,16 @@
 		60EBFFB4409768758EB6D2FC /* Pods-ServiceFlatformTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceFlatformTests.debug.xcconfig"; path = "Target Support Files/Pods-ServiceFlatformTests/Pods-ServiceFlatformTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DB6A36560DB433BD3F7BE05 /* Pods-ServiceFlatform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceFlatform.debug.xcconfig"; path = "Target Support Files/Pods-ServiceFlatform/Pods-ServiceFlatform.debug.xcconfig"; sourceTree = "<group>"; };
 		6DCB6C83BD8D7BD90BBF9FFA /* Pods-SmartGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartGo.release.xcconfig"; path = "Target Support Files/Pods-SmartGo/Pods-SmartGo.release.xcconfig"; sourceTree = "<group>"; };
+		730F247A228C8E020003FE3F /* UITableViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExts.swift; sourceTree = "<group>"; };
 		737787F5223CD99700AEBBEA /* ReuseNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseNib.swift; sourceTree = "<group>"; };
 		7377880D223D098D00AEBBEA /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		73834EA12281CD8D009575D3 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		73834EA62281CDEE009575D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		73834EA82281D08D009575D3 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		73834EB22282B467009575D3 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		738D62CF22845040008C1957 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		739F6112228EFA47000C5F5D /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		739F6113228EFA47000C5F5D /* TripTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripTableViewCell.xib; sourceTree = "<group>"; };
 		73BC6BDA2281525B0054C330 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		73BC6BDC2281535E0054C330 /* FirebaseExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExts.swift; sourceTree = "<group>"; };
 		73BC6BDE228153C30054C330 /* DateExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExts.swift; sourceTree = "<group>"; };
@@ -455,6 +463,7 @@
 		519AE80F222D82C200A944B5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				738D62CE22845028008C1957 /* Firebase */,
 				73834EAB2281D97E009575D3 /* Scenes */,
 			);
 			path = Scenes;
@@ -639,6 +648,7 @@
 				73E65847227EF8BF00C1D9FD /* UIImageViewExts.swift */,
 				73BC6BDC2281535E0054C330 /* FirebaseExts.swift */,
 				73BC6BDE228153C30054C330 /* DateExts.swift */,
+				730F247A228C8E020003FE3F /* UITableViewExts.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -700,6 +710,31 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		738D62CE22845028008C1957 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				738D62CF22845040008C1957 /* FirebaseAuthManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		739F610C228CE364000C5F5D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				739F610D228CE37D000C5F5D /* PlanTableViewCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		739F610D228CE37D000C5F5D /* PlanTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				739F6112228EFA47000C5F5D /* TripTableViewCell.swift */,
+				739F6113228EFA47000C5F5D /* TripTableViewCell.xib */,
+			);
+			path = PlanTableViewCell;
+			sourceTree = "<group>";
+		};
 		73BC6BE222819F430054C330 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,7 +763,6 @@
 		73CC4479227FDE3500ABE821 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				73CC448E228068EC00ABE821 /* Items */,
 				73CC4480227FE1FA00ABE821 /* SideMenu.storyboard */,
 			);
 			path = SideMenu;
@@ -737,6 +771,7 @@
 		73CC447D227FDEA200ABE821 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				739F610C228CE364000C5F5D /* Cell */,
 				73CC447E227FDEAD00ABE821 /* HomeViewController.swift */,
 				73CC4485227FEDDC00ABE821 /* HomeModel.swift */,
 			);
@@ -762,17 +797,10 @@
 			path = Struct;
 			sourceTree = "<group>";
 		};
-		73CC448E228068EC00ABE821 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				73CC448F2280692E00ABE821 /* MenuItemCell.xib */,
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
 		73CC4493228069D300ABE821 /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				73CC448F2280692E00ABE821 /* MenuItemCell.xib */,
 				73CC4494228069ED00ABE821 /* MenuItemCell.swift */,
 			);
 			path = Items;
@@ -994,6 +1022,7 @@
 				73834EA22281CD8D009575D3 /* Register.storyboard in Resources */,
 				519AE75E222D709C00A944B5 /* Main.storyboard in Resources */,
 				73CC447B227FDE5500ABE821 /* Home.storyboard in Resources */,
+				739F6115228EFA47000C5F5D /* TripTableViewCell.xib in Resources */,
 				73BC6BDB2281525B0054C330 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1190,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73E7DE7F225E2C5B00C8FA9E /* UITextfieldEtxs.swift in Sources */,
+				730F247B228C8E020003FE3F /* UITableViewExts.swift in Sources */,
 				73CC448B228004D000ABE821 /* SMNavigationController.swift in Sources */,
 				51DDA61D222D9B5E00E2340D /* UIViewExts.swift in Sources */,
 				73CC448D2280626D00ABE821 /* MenuViewModel.swift in Sources */,
@@ -1207,6 +1237,7 @@
 				519AE81A222D836F00A944B5 /* ViewModelType.swift in Sources */,
 				51DDA624222D9B5E00E2340D /* UDKey.swift in Sources */,
 				51DDA633222DA27400E2340D /* Helper.swift in Sources */,
+				739F6114228EFA47000C5F5D /* TripTableViewCell.swift in Sources */,
 				73CC4489227FEEA400ABE821 /* Struct.swift in Sources */,
 				73BC6BDF228153C30054C330 /* DateExts.swift in Sources */,
 				7377880E223D098D00AEBBEA /* ReuseIdentifier.swift in Sources */,
@@ -1218,6 +1249,7 @@
 				73BC6BE72281A35A0054C330 /* SignInViewController.swift in Sources */,
 				51DDA626222D9B5E00E2340D /* UIHelper.swift in Sources */,
 				73CC4486227FEDDC00ABE821 /* HomeModel.swift in Sources */,
+				738D62D022845040008C1957 /* FirebaseAuthManager.swift in Sources */,
 				73834EA72281CDEE009575D3 /* RegisterViewController.swift in Sources */,
 				51DDA62B222D9BD800E2340D /* Constants.swift in Sources */,
 				73CC4495228069ED00ABE821 /* MenuItemCell.swift in Sources */,

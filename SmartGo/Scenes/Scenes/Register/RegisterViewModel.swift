@@ -18,70 +18,30 @@ class RegisterViewModel {
     db.setupFirebase()
   }
   
-  public func register(email: String, password: String) {
-    auth.createUser(withEmail: email, password: password) { user, error in
-      if let error = error {
-        print(error)
-      } else {
-        guard let user = self.auth.currentUser else { return }
-        guard let email = user.email else { return }
-        
-        let data: [String: Any] = [
-          "firstName" : "",
-          "lastName" : "",
-          "fullName" : "",
-          "email" : email,
-          "id" : user.uid,
-          "phone" : 0,
-          "birthday" : "",
-          "address" : ""
-        ]
-        
-        FirestoreCollection.user.document(user.uid).setData(data)
-      }
-    }
+  public func register(email: String, password: String, completion: @escaping (Bool) -> Void) {
+    FirebaseAuthManger.shared.register(email: email, password: password, completion: { check in
+      completion(check)
+    })
   }
   
   public func checkValueIsEmpty(email: String, password: String, confirmPassword: String) -> Bool {
-    if email.isEmpty && password.isEmpty && confirmPassword.isEmpty {
-      return true
-    } else if email.isEmpty && password.isEmpty {
-      return true
-    } else if password.isEmpty && confirmPassword.isEmpty  {
-      return true
-    } else if email.isEmpty && confirmPassword.isEmpty {
-      return true
-    } else if email.isEmpty {
-      return true
-    } else if password.isEmpty {
-      return true
-    } else if confirmPassword.isEmpty {
+    if email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
       return true
     }
     return false
   }
   
   public func checkUserExists(email: String, completion: @escaping (Bool) -> Void) {
-    FirestoreCollection.user.whereField(UserCollection.email.rawValue, isEqualTo: email).getDocuments{ (snapshot, error) in
-      if let error = error {
-        print(error)
-      } else {
-        guard let count = snapshot?.documents.count else { return }
-        print(count)
-        if count > 0 {
-          completion(false)
-        } else {
-          completion(true)
-        }
-      }
-    }
+    FirebaseAuthManger.shared.checkUserExists(email: email, completion: { check in
+      completion(check)
+    })
   }
   
   public func checkPasswordIsMatch(password: String, confirmPassword: String) -> Bool {
     return password==confirmPassword
   }
   
-  public func stateTextField(text: String = "", of textField: UserProfileTextField) -> String {
-    return text.isEmpty ? "*\(textField.rawValue) must not be empty" : ""
+  public func notificationTextField(text: String = "", of textField: UserProfileTextField) -> String {
+    return text.isEmpty ? "* \(textField.rawValue) must not be empty" : ""
   }
 }

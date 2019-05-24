@@ -11,5 +11,5 @@ extension Notification.Name {
   // start - stop shift
   static let addNewActivity = Notification.Name(Constant.NotificationName.addNewActivity)
   static let updateRequest = Notification.Name(Constant.NotificationName.updateRequest)
-  
+  static let reloadMenu = Notification.Name(Constant.NotificationName.reloadMenu)
 }

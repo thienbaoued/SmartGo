@@ -18,29 +18,20 @@ class SignInViewModel {
     db.setupFirebase()
   }
   
-  public func checkUser(email: String, password: String, completion: @escaping (Bool) -> Void) {
-    auth.signIn(withEmail: email, password: password) { user, error in
-      if let error = error {
-        print(error)
-        completion(false)
-      } else {
-        completion(true)
-      }
-    }
+  public func signIn(email: String, password: String, completion: @escaping (Bool) -> Void) {
+    FirebaseAuthManger.shared.signIn(email: email, password: password, completion: { check in
+      completion(check)
+    })
   }
   
   public func checkValueIsEmpty(email: String, password: String) -> Bool {
-    if email.isEmpty && password.isEmpty{
-      return true
-    } else if password.isEmpty {
-      return true
-    } else if email.isEmpty  {
+    if email.isEmpty || password.isEmpty{
       return true
     }
     return false
   }
   
-  public func stateTextField(text: String, of textField: UserProfileTextField) -> String {
-    return text.isEmpty ? "*\(textField.rawValue) must not be empty" : ""
+  public func notificationTextField(text: String, of textField: UserProfileTextField) -> String {
+    return text.isEmpty ? "* \(textField.rawValue) must not be empty" : ""
   }
 }

@@ -24,6 +24,9 @@ target 'SmartGo' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
+  pod 'RLBAlertsPickers'
+  pod 'DZNEmptyDataSet'
 
   target 'SmartGoTests' do
     inherit! :search_paths
